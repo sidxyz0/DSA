@@ -43,7 +43,7 @@ class List<T> {
         }
     }
 
-    public void addNoteAt(int n, T val) {
+    public void addNodeAt(int n, T val) {
         if (this.head != null) {
             if (n >= 0) {
                 if (this.head != this.tail) {
@@ -116,13 +116,13 @@ class List<T> {
             while (curr != null) {
                 i++;
                 if (i == this.length) {
-                    str.append(curr.val + ". ");
+                    str.append(curr.val + "");
                 } else {
                     str.append(curr.val + ", ");
                 }
                 curr = curr.next;
             }
-            return str.toString();
+            return "["+str.toString()+"]";
         } else {
             return "List is empty. ";
         }
@@ -222,6 +222,45 @@ class List<T> {
             return null;
         }
     }
+
+    public void reverseIt(){
+        if(this.head!=null){
+            if(this.head!=this.tail){
+                Node<T> prev = null;
+                Node<T> curr = this.head;
+                Node<T> nx = null;
+                while(curr!=null){
+                    nx=curr.next;
+                    curr.next = prev;
+                    prev = curr;
+                    curr=nx;
+                }
+                Node<T> temp = this.head;
+                this.head = this.tail;
+                this.tail = temp;
+            }
+        }
+        
+    }
+
+    public List<T> getReverse(){
+        List<T> b = new List<T>();
+        if(this.head!=null){
+            if(this.head!=this.tail){
+                Node<T> curr = this.head;
+                while(curr!=null){
+                    b.addNodeAt(0, curr.val);
+                    curr = curr.next;
+                }
+            }
+            else{
+                b.addNodeAt(0, this.head.val);
+            }
+        }
+
+        return b;
+        
+    }
 }
 
 public class linkedList {
@@ -259,19 +298,32 @@ public class linkedList {
         System.out.println("List: " + a.listToString());
         System.out.println("Length: " + a.getListLength());
 
-        a.addNoteAt(0, "1");
+        a.addNodeAt(0, "1");
         System.out.println("List: " + a.listToString());
         System.out.println("Length: " + a.getListLength());
 
-        a.addNoteAt(3, "1");
+        a.addNodeAt(3, "1");
         System.out.println("List: " + a.listToString());
         System.out.println("Length: " + a.getListLength());
 
-        a.addNoteAt(5, "5");
+        a.addNodeAt(5, "5");
         System.out.println("List: " + a.listToString());
         System.out.println("Length: " + a.getListLength());
 
         System.out.println(a.findIndexOf("6"));
         System.out.println(a.getValueAt(3));
+
+        List<Object> c = a.getReverse();
+        System.out.println(c.listToString());
+        System.out.println(a.listToString());
+
+        a.reverseIt();
+        System.out.println(a.listToString());
+
+        List<Integer> b = new List<Integer>(1);
+        System.out.println(b.listToString());
+        b.removeNode();
+        b.reverseIt();
+        System.out.println(b.listToString());
     }
 }
