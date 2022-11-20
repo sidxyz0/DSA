@@ -66,11 +66,11 @@ class Stack<T> {
 
     public T pickAt(int n) {
         Stack<T> b = new Stack<T>();
-        while (this.length >= n) {
+        while (this.length > n) {
             b.put(this.pick());
         }
         T a = b.pick();
-        while (b.length >= 0) {
+        while (b.length > 0) {
             this.put(b.pick());
         }
 
@@ -79,11 +79,11 @@ class Stack<T> {
 
     public T peekAt(int n) {
         Stack<T> b = new Stack<T>();
-        while (this.length >= n) {
+        while (this.length > n) {
             b.put(this.pick());
         }
         T a = b.peek();
-        while (b.length >= 0) {
+        while (b.length > 0) {
             this.put(b.pick());
         }
 
@@ -114,7 +114,6 @@ class Stack<T> {
 
     public String stackToString() {
         int l = this.length;
-        Stack<T> c = new Stack<T>();
         Stack<T> b = new Stack<T>();
         StringBuilder s = new StringBuilder("");
         if (l > 1) {
@@ -153,9 +152,14 @@ public class stackImpl {
         a.put(4);
         System.out.println(a.peek());
         System.out.println(a.pick());
+
         a.put(5);
         a.reverseIt();
         a.putAt(1, 6);
+        System.out.println(a.stackToString());
+        
+        System.out.println(a.peekAt(2));
+        System.out.println(a.pickAt(2));
         System.out.println(a.stackToString());
 
     }
