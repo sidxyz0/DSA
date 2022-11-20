@@ -122,7 +122,7 @@ class List<T> {
                 }
                 curr = curr.next;
             }
-            return "["+str.toString()+"]";
+            return "[" + str.toString() + "]";
         } else {
             return "List is empty. ";
         }
@@ -223,43 +223,42 @@ class List<T> {
         }
     }
 
-    public void reverseIt(){
-        if(this.head!=null){
-            if(this.head!=this.tail){
+    public void reverseIt() {
+        if (this.head != null) {
+            if (this.head != this.tail) {
                 Node<T> prev = null;
                 Node<T> curr = this.head;
                 Node<T> nx = null;
-                while(curr!=null){
-                    nx=curr.next;
+                while (curr != null) {
+                    nx = curr.next;
                     curr.next = prev;
                     prev = curr;
-                    curr=nx;
+                    curr = nx;
                 }
                 Node<T> temp = this.head;
                 this.head = this.tail;
                 this.tail = temp;
             }
         }
-        
+
     }
 
-    public List<T> getReverse(){
+    public List<T> getReverse() {
         List<T> b = new List<T>();
-        if(this.head!=null){
-            if(this.head!=this.tail){
+        if (this.head != null) {
+            if (this.head != this.tail) {
                 Node<T> curr = this.head;
-                while(curr!=null){
+                while (curr != null) {
                     b.addNodeAt(0, curr.val);
                     curr = curr.next;
                 }
-            }
-            else{
+            } else {
                 b.addNodeAt(0, this.head.val);
             }
         }
 
         return b;
-        
+
     }
 }
 
