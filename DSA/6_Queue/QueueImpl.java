@@ -1,7 +1,15 @@
 import java.util.ArrayList;
 import java.util.Stack;
 
-class Queue<T> {
+interface QueueInterface<T>{
+    void enqueue(T val);
+    T dequeue();
+    T peek();
+    int getLength();
+    String queueToString();
+}
+
+class Queue<T> implements QueueInterface<T> {
     private ArrayList<T> arr;
 
     Queue() {
@@ -20,6 +28,11 @@ class Queue<T> {
     public T dequeue() {
         T val = this.arr.get(0);
         this.arr.remove(0);
+        return val;
+    }
+
+    public T peek(){
+        T val = this.arr.get(0);
         return val;
     }
 
