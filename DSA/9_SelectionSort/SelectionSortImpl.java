@@ -1,19 +1,21 @@
-class BubbleSort {
-    private int[] arr;
+class SelectionSort {
+    int[] arr;
 
-    BubbleSort(int[] a) {
+    SelectionSort(int[] a) {
         this.arr = a;
     }
 
     public void sort() {
-        for (int i = 1; i < this.arr.length; i++) {
-            int temp;
-            for (int j = 0; j < this.arr.length - i; j++) {
-                temp = this.arr[j];
-                if (temp > this.arr[j + 1]) {
-                    this.swapIndex(j, j + 1, this.arr);
+        for (int i = 0; i < this.arr.length; i++) {
+            int min = this.arr[i];
+            int minIndex = i;
+            for (int j = i + 1; j < this.arr.length; j++) {
+                if (this.arr[j] < min) {
+                    min = this.arr[j];
+                    minIndex = j;
                 }
             }
+            this.swapIndex(i, minIndex, this.arr);
         }
     }
 
@@ -23,23 +25,25 @@ class BubbleSort {
         ar[b] = temp;
     }
 
-    public BubbleSort getNewSorted() {
-        int[] tempArr= new int[this.arr.length];
-
+    public SelectionSort getNewSorted(){
+        int[] tempArr = new int[this.arr.length];
         for(int i=0;i<this.arr.length; i++){
             tempArr[i] = this.arr[i];
         }
-
-        for (int i = 1; i < tempArr.length; i++) {
-            int temp;
-            for (int j = 0; j < tempArr.length - i; j++) {
-                temp = tempArr[j];
-                if (temp > tempArr[j + 1]) {
-                    this.swapIndex(j, j + 1, tempArr);
+        
+        for (int i = 0; i < tempArr.length; i++) {
+            int min = tempArr[i];
+            int minIndex = i;
+            for (int j = i + 1; j < tempArr.length; j++) {
+                if (tempArr[j] < min) {
+                    min = tempArr[j];
+                    minIndex = j;
                 }
             }
+            this.swapIndex(i, minIndex, tempArr);
         }
-        return new BubbleSort(tempArr);
+
+        return new SelectionSort(tempArr);
     }
 
     public String toString() {
@@ -69,13 +73,13 @@ class BubbleSort {
     }
 }
 
-public class BubbleSortImpl {
+public class SelectionSortImpl {
     public static void main(String args[]) {
 
         int[] a = { 2, 3, 1, 7, 9, 1, 4, 6, 5 };
-        BubbleSort abc = new BubbleSort(a);
+        SelectionSort abc = new SelectionSort(a);
         //abc.sort();
-        BubbleSort def = abc.getNewSorted();
+        SelectionSort def = abc.getNewSorted();
         System.out.println(def.toString());
         System.out.println(abc.toString());
     }
